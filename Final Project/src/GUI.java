@@ -503,7 +503,7 @@ public class GUI extends JFrame {
 		Startpage.add(btnNewUser);
 
 		JButton btnExistingUser = new JButton("Existing User");
-		btnExistingUser.setFont(new Font("Tahoma", Font.PLAIN, 35));
+		btnExistingUser.setFont(new Font("Tahoma", Font.PLAIN, 34));
 		btnExistingUser.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Startpage.setVisible(false);
@@ -646,15 +646,13 @@ public class GUI extends JFrame {
 
 		JComboBox breed = new JComboBox();
 		breed.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		breed.setModel(new DefaultComboBoxModel(new String[] { "Breed (All)",
-				"Cats:", "Dogs:", "Fish:", "Birds:" }));
+		breed.setModel(new DefaultComboBoxModel(new String[] {"Breed (All)", "Dogs:", "German Shepard", "Husky", "Lab", "Cats:", "Persian", "Siamese", "Main Coon", "Fish:", "Goldfish", "Betta", "Clownfish", "Birds:", "Bald Eagle", "Hawk", "Parrot"}));
 		breed.setBounds(392, 219, 377, 39);
 		AdoptSearch.add(breed);
 
 		JComboBox color = new JComboBox();
 		color.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		color.setModel(new DefaultComboBoxModel(new String[] { "Color (All)",
-				"Red", "Blue", "Green", "Brown", "Yellow", "Black", "White" }));
+		color.setModel(new DefaultComboBoxModel(new String[] {"Color (All)", "Black", "Brown", "White", "Yellow", "Golden"}));
 		color.setBounds(392, 279, 377, 39);
 		AdoptSearch.add(color);
 
@@ -668,7 +666,7 @@ public class GUI extends JFrame {
 
 		JComboBox size = new JComboBox();
 		size.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		size.setModel(new DefaultComboBoxModel(new String[] { "Size (all)",
+		size.setModel(new DefaultComboBoxModel(new String[] { "Size (All)",
 				"Small", "Medium", "Large", "Extra Large" }));
 		size.setBounds(523, 339, 246, 32);
 		AdoptSearch.add(size);
@@ -681,38 +679,47 @@ public class GUI extends JFrame {
 				String color1 = "";
 				int age1 = 0;
 				int size1 = 0;
-				if (species.getSelectedItem().toString().contains("All"))
+				if (species.getSelectedItem().toString().contains("All")){
 					species1 = null;
-				else
+				}
+				else{
 					species1 = species.getSelectedItem().toString();
-				if (breed.getSelectedItem().toString().contains("All"))
+				}
+				if (breed.getSelectedItem().toString().contains("All")){
 					breed1 = null;
-				else
+				}
+				else{
 					breed1 = breed.getSelectedItem().toString();
-				if (color.getSelectedItem().toString().contains("All"))
+				}
+				if (color.getSelectedItem().toString().contains("All")){
 					color1 = null;
-				else
+				}
+				else{
 					color1 = color.getSelectedItem().toString();
-				if (age.getSelectedItem().toString().contains("All"))
+				}
+				if (age.getSelectedItem().toString().contains("All")){
 					age1 = -1;
-				else
+				}
+				else{
 					age1 = Integer.parseInt(age.getSelectedItem().toString());
-				if (size.getSelectedItem().toString().contains("All"))
+				}
+				if (size.getSelectedItem().toString().contains("All")){
 					size1 = -1;
+				}
 				else {
-					if (species.getSelectedItem().toString().equals("small")) {
-						size1 = 1;
-					} else if (species.getSelectedItem().toString()
-							.toLowerCase().equals("medium")) {
-						size1 = 2;
-					} else if (species.getSelectedItem().toString()
-							.toLowerCase().equals("large")) {
-						size1 = 3;
-					} else if (species.getSelectedItem().toString()
-							.toLowerCase().equals("extra large")) {
-						size1 = 4;
-					} else {
-						size1 = -1;
+					switch(size.getSelectedItem().toString()){
+						case "Small":
+							size1 = 1;
+							break;
+						case "Medium":
+							size1 = 2;
+							break;
+						case "Large":
+							size1 = 3;
+							break;
+						case "Extra Large":
+							size1 = 4;
+							break;
 					}
 				}
 				search = Search.search(pets, species1, breed1, color1, age1,
